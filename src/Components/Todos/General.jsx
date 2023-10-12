@@ -1,10 +1,26 @@
 import ToDoItem from "./ToDoItem";
 import Card from "react-bootstrap/Card";
 import ToDoFilter from "./ToDoFilter";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import ToDoList from "./ToDoList";
+import supabase from "../Backend/supabase";
 
 const General = (props) => {
+  [tasks, setTasks] = useState([]);
+
+
+  //Fetch data from Supabase todos table
+  async function fetchData() {
+    let { data: todos, error } = await supabase
+    .from('todos')
+    .select('*');
+    setTasks(todos); 
+  }
+
+  useEffect(() => {
+    fetchData();
+  }, []);
+
   //Managing filter
   const [searchTask, setSearchTask] = useState("inprogress");
 
