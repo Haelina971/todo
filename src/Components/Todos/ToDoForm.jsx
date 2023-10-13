@@ -18,6 +18,8 @@ const ToDoForm = (props) => {
     validDate: true,
   });
 
+  const [loading, setLoading] = useState(false);
+
   //Change enteredTask value
   const taskChangeHandler = (event) => {
     //The default black color has priority when typing in the field
@@ -48,6 +50,7 @@ const ToDoForm = (props) => {
   //Reset value of input fields
   const submitHandler = async (event) => {
     event.preventDefault();
+    setLoading(true);
 
     //Prevent empty task or empty date to be addded to the list
     if (
@@ -87,6 +90,8 @@ const ToDoForm = (props) => {
       enteredTask: "",
       enteredDate: "",
     });
+
+    setLoading(false);
   };
 
   return (
@@ -103,6 +108,7 @@ const ToDoForm = (props) => {
           placeholder="Enter task"
           onChange={taskChangeHandler}
           value={userInput.enteredTask}
+          disabled={loading} //disable input while adding task
         />
         <Input
           style={{
@@ -115,6 +121,7 @@ const ToDoForm = (props) => {
           min="2023-01-01"
           onChange={dateChangeHandler}
           value={userInput.enteredDate}
+          disabled={loading} //disable input while adding task
         />
         <Button variant="success" className="my-3 mx-2" type="submit">
           Add
