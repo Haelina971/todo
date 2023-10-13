@@ -85,7 +85,7 @@ const ToDoForm = (props) => {
     //Insert user input into corresponding columns
     const { data, error } = await supabase
       .from("todos")
-      .insert([{ task: toDoData.title, scheduled_date: toDoData.date, progress: 0 }]);
+      .insert([{ title: toDoData.title, date: toDoData.date, now: 0 }]);
 
     setUserInput({
       enteredTask: "",
