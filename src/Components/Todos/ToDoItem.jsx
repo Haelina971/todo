@@ -8,13 +8,13 @@ import supabase from "../Backend/supabase";
 
 const ToDoItem = (props) => {
   async function deleteTaskHandler() {
-    const { error } = await supabase.from("todos").delete().eq("id", id);
+    const { error } = await supabase.from("todos").delete().eq("id", props.id);
   }
 
   //Renders one ToDoItem
   //Use props from parent component ToDoList
   return (
-    <li className="list-unstyled">
+    <li id={props.id} className="list-unstyled">
       <Card className="d-flex flex-row align-items-center justify-content-between border-success border border-3 rounded-5 py-2 px-3 m-3 shadow">
         <ToDoDate date={props.date} />
         <Link className="text-decoration-none text-reset" to="pages/tododetail">
@@ -34,7 +34,6 @@ const ToDoItem = (props) => {
           variant="outline-success"
           size="sm"
           onClick={deleteTaskHandler}
-          id={props.id}
         >
           <img src={Trash} alt="Delete" />
         </Button>

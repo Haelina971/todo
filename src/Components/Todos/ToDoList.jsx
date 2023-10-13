@@ -12,6 +12,7 @@ const ToDoList = (props) => {
         props.items.map((item) => (
           <ToDoItem
             key={item.id}
+            id={item.id}
             title={item.title}
             date={item.date}
             now={item.now}
