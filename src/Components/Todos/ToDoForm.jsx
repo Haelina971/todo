@@ -18,6 +18,7 @@ const ToDoForm = (props) => {
     validDate: true,
   });
 
+  //useState to disable input fields while task info is posted
   const [loading, setLoading] = useState(false);
 
   //Change enteredTask value
