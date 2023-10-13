@@ -6,15 +6,14 @@ import ToDoList from "./ToDoList";
 import supabase from "../Backend/supabase";
 
 const General = (props) => {
-  [tasks, setTasks] = useState([]);
-
+  //[tasks, setTasks] = useState([]);
 
   //Fetch data from Supabase todos table
   async function fetchData() {
     let { data: todos, error } = await supabase
     .from('todos')
     .select('*');
-    setTasks(todos); 
+    console.log(todos); 
   }
 
   useEffect(() => {
