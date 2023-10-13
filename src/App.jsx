@@ -1,13 +1,13 @@
-import 'bootstrap/dist/css/bootstrap.min.css';
+import "bootstrap/dist/css/bootstrap.min.css";
 import "bootstrap/dist/js/bootstrap.bundle.min";
-import './styles.css';
-import { Route, Routes } from 'react-router-dom';
-import ToDos from './Components/Pages/ToDos';
-import Layout from './Components/Pages/Layout';
-import SignUp from './Components/Pages/SignUp';
-import LogIn from './Components/Pages/LogIn';
-import Home from './Components/Pages/Home';
-import About from './Components/Pages/About';
+import "./styles.css";
+import { Route, Routes } from "react-router-dom";
+import ToDos from "./Components/Pages/ToDos";
+import Layout from "./Components/Pages/Layout";
+import SignUp from "./Components/Pages/SignUp";
+import LogIn from "./Components/Pages/LogIn";
+import Home from "./Components/Pages/Home";
+import About from "./Components/Pages/About";
 
 const App = () => {
   //Use Routes to render different pages
@@ -23,7 +23,7 @@ const App = () => {
         </Route>
       </Routes>
     </div>
-  )
-}
+  );
+};
 
-export default App
+export default App;

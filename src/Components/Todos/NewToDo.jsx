@@ -20,22 +20,31 @@ const NewToDo = (props) => {
 
   const startEditingHandler = () => {
     setIsEditing(true);
-  }
+  };
 
   const stopEditingHandler = () => {
     setIsEditing(false);
-  }
+  };
 
   return (
     <div className="d-flex border border-success border-3 p-5 rounded-5 m-5">
-      {!isEditing && <Button className="m-auto p-3 rounded-4"
-        variant="success"
-        onClick={startEditingHandler}>
+      {!isEditing && (
+        <Button
+          className="m-auto p-3 rounded-4"
+          variant="success"
+          onClick={startEditingHandler}
+        >
           Add New Task
-      </Button>}
-      {isEditing && <ToDoForm onSaveToDoData={saveToDoDataHandler} onCancel={stopEditingHandler}/>}
+        </Button>
+      )}
+      {isEditing && (
+        <ToDoForm
+          onSaveToDoData={saveToDoDataHandler}
+          onCancel={stopEditingHandler}
+        />
+      )}
     </div>
-  )
+  );
 };
 
 export default NewToDo;

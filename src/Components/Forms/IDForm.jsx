@@ -35,14 +35,12 @@ const IDForm = (props) => {
       password: userInput.enteredPassword,
     };
     console.log(userData);
-    
+
     //Insertion returns Error 401
-    const { error } = await supabase
-      .from("users")
-      .insert({
-        email: userInput.enteredEmail,
-        password: userInput.enteredPassword,
-      });
+    const { error } = await supabase.from("users").insert({
+      email: userInput.enteredEmail,
+      password: userInput.enteredPassword,
+    });
 
     //props.onSaveuserData(userData);
     setUserInput({

@@ -14,22 +14,20 @@ const ToDos = () => {
   //const [items, setItems] = useState(DUMMY_TODOS);
   const [items, setItems] = useState([]);
 
-//Fetch data from Supabase todos table
-async function fetchData() {
-  let { data: todos, error } = await supabase
-      .from('todos')
-      .select('*');
-  setItems(todos);
-}
+  //Fetch data from Supabase todos table
+  async function fetchData() {
+    let { data: todos, error } = await supabase.from("todos").select("*");
+    setItems(todos);
+  }
 
-useEffect(() => {
-  fetchData();
-}, []);
+  useEffect(() => {
+    fetchData();
+  }, []);
 
   //Add new ToDoItem
   const addToDoItemHandler = (item) => {
-    setItems(prevItems => {
-        return [item, ...prevItems];
+    setItems((prevItems) => {
+      return [item, ...prevItems];
     });
   };
 
