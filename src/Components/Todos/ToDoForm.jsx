@@ -21,30 +21,53 @@ const ToDoForm = (props) => {
   //useState to disable input fields while task info is posted
   const [loading, setLoading] = useState(false);
 
-  //Change enteredTask value
-  const taskChangeHandler = (event) => {
-    //The default black color has priority when typing in the field
-    if (event.target.value.trim().length > 0) {
-      setIsValid((prevState) => {
-        return { ...prevState, validTask: true };
-      });
-    }
-    setUserInput((prevState) => {
-      return { ...prevState, enteredTask: event.target.value };
-    });
-  };
+  // //Change enteredTask value
+  // const taskChangeHandler = (event) => {
+  //   //The default black color has priority when typing in the field
+  //   if (event.target.value.trim().length > 0) {
+  //     setIsValid((prevState) => {
+  //       return { ...prevState, validTask: true };
+  //     });
+  //   }
+  //   setUserInput((prevState) => {
+  //     return { ...prevState, enteredTask: event.target.value };
+  //   });
+  // };
 
-  //Change enteredDate value
-  const dateChangeHandler = (event) => {
-    //The default color has priority when a date is selected
-    if (event.target.value.trim().length > 0) {
-      setIsValid((prevState) => {
-        return { ...prevState, validDate: true };
-      });
+  // //Change enteredDate value
+  // const dateChangeHandler = (event) => {
+  //   //The default color has priority when a date is selected
+  //   if (event.target.value.trim().length > 0) {
+  //     setIsValid((prevState) => {
+  //       return { ...prevState, validDate: true };
+  //     });
+  //   }
+  //   setUserInput((prevState) => {
+  //     return { ...prevState, enteredDate: event.target.value };
+  //   });
+  // };
+
+  //Shared handler function to handle input task and date
+  //instead of having two separate functions
+  const inputChangeHandler = (identifier, value) => {
+    if (value.trim().length > 0) {
+      if (identifier === "task") {
+        setIsValid((prevState) => {
+          return { ...prevState, validTask: true };
+        });
+        setUserInput((prevState) => {
+          return { ...prevState, enteredTask: value };
+        });
+      }
+      if (identifier === "date") {
+        setIsValid((prevState) => {
+          return { ...prevState, validDate: true };
+        });
+        setUserInput((prevState) => {
+          return { ...prevState, enteredDate: value };
+        });
+      }
     }
-    setUserInput((prevState) => {
-      return { ...prevState, enteredDate: event.target.value };
-    });
   };
 
   //Collect data from the different inputs into object
@@ -107,7 +130,7 @@ const ToDoForm = (props) => {
           name="Task"
           type="text"
           placeholder="Enter task"
-          onChange={taskChangeHandler}
+          onChange={(event) => inputChangeHandler('task', event.target.value)}
           value={userInput.enteredTask}
           disabled={loading} //disable input while adding task
         />
@@ -120,7 +143,7 @@ const ToDoForm = (props) => {
           name="Date"
           type="date"
           min="2023-01-01"
-          onChange={dateChangeHandler}
+          onChange={(event) => inputChangeHandler('date', event.target.value)}
           value={userInput.enteredDate}
           disabled={loading} //disable input while adding task
         />

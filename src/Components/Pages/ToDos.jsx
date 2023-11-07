@@ -3,15 +3,9 @@ import NewToDo from "../Todos/NewToDo";
 import General from "../Todos/General";
 import Card from "react-bootstrap/Card";
 import supabase from "../Backend/supabase";
-
-//Arrays of ToDoItems
-// const DUMMY_TODOS = [
-//     { title: "Learn React", date: new Date(2023, 2, 1), now:30, id:"01" },
-//     { title: "Build ToDo App", date: new Date(2023, 2, 10), now:70, id:"02" },
-//   ];
+import { useRealtime } from "react-supabase";
 
 const ToDos = () => {
-  //const [items, setItems] = useState(DUMMY_TODOS);
   const [items, setItems] = useState([]);
 
   //Fetch data from Supabase todos table
@@ -20,9 +14,13 @@ const ToDos = () => {
     setItems(todos);
   }
 
+  //fetch todos data in db when page loads
   useEffect(() => {
     fetchData();
   }, []);
+
+  //react-supabase library to useRealtime for updates (not working)
+  //const [{ data: items, error, fetching }, reexecute] = useRealtime('todos')
 
   //Add new ToDoItem
   const addToDoItemHandler = (item) => {

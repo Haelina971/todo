@@ -12,7 +12,6 @@ const NewToDo = (props) => {
   const saveToDoDataHandler = (enteredToDoData) => {
     const toDoData = {
       ...enteredToDoData,
-      id: Math.random().toString(), //Change for counter later
     };
     props.onAddToDoItem(toDoData);
     setIsEditing(false);
